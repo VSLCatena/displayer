@@ -1,21 +1,13 @@
-[![Build Status](https://travis-ci.org/Screenly/screenly-ose.svg?branch=master)](https://travis-ci.org/Screenly/screenly-ose)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5905ebcf4aab4220ad9fdf3fb679c49d)](https://www.codacy.com/app/vpetersson/screenly-ose?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Screenly/screenly-ose&amp;utm_campaign=Badge_Grade)
+# Screenly OSE + PHP - Digital Signage 
 
-# Screenly OSE - Digital Signage for the Raspberry Pi
 
-## Disk images
+## Installing
 
-The recommended installation method is to grab the latest disk image from [here](https://github.com/Screenly/screenly-ose/releases).
-
-## Installing on Raspbian
-
-The tl;dr for installing Screenly OSE on [Raspbian Lite](https://www.raspberrypi.org/downloads/raspbian/) is:
+The tl;dr for installing Screenly OSE + PHP is:
 
 ```
-$ bash <(curl -sL https://www.screenly.io/install-ose.sh)
+screenly-ose/bin/install.sh
 ```
-
-(The installation will take 15-20 minutes or so depending on your connectivity and the speed of your SD card.)
 
 To learn more about Screenly, please visit the official website at [Screenly.io](http://www.screenly.io).
 
@@ -30,23 +22,12 @@ Quick links:
  * [QA Checklist](https://www.forgett.com/checklist/1789089623)
  * [API Docs](http://ose.demo.screenlyapp.com/api/docs/)
 
-Screenly OSE works on all Raspberry Pi versions, including Raspberry Pi Zero and Raspberry Pi 3 Model B.
+Screenly OSE works on Ubuntu, not only on Raspberry Pi. 
 
-## Dockerized Development Environment
+##Changes
+- Edit README.md
+- create socket communication
+- Serve webpage which will be feeded by viewer.py + socket communication
 
-To simplify development of the server module of Screenly OSE, we've created a Docker container. This is intended to run on your local machine with the Screenly OSE repository mounted as a volume.
 
-Assuming you're in the source code repository, simply run:
 
-```
-$ docker run --rm -ti \
-    --name=screenly-dev \
-    -e 'LISTEN=0.0.0.0' \
-    -p 8080:8080 \
-    -v $(pwd):/home/pi/screenly \
-    screenly/ose-dev-server
-```
-
-## Running the Unit Tests
-
-    nosetests --with-doctest

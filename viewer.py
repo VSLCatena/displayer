@@ -303,7 +303,10 @@ def view_video(uri, duration):
     except sh.ErrorReturnCode_1:
         logging.info('Resource URI is not correct, remote host is not responding or request was rejected.')
 
-
+#https://stackoverflow.com/questions/10807398/php-fetch-pages-content-with-remote-call
+#https://stackoverflow.com/questions/353803/redirect-to-specified-url-on-php-script-completion
+#https://stackoverflow.com/questions/7467330/php-headerlocation-force-url-change-in-address-bar
+#https://stackoverflow.com/questions/35187115/read-bash-output-with-javascript
 def check_update():
     """
     Check if there is a later version of Screenly OSE

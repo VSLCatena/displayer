@@ -1,0 +1,10 @@
+body {
+overflow:hidden;
+}
+
+iframe {
+	 height: 98vh;
+    width: 100%;
+	border: none;
+}   
+
