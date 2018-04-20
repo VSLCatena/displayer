@@ -1,6 +1,6 @@
 [Unit]
 Description=Screenly Viewer
-After=matchbox.service screenly-web.service
+After=screenly-web.service
 
 [Service]
 WorkingDirectory=/home/pi/screenly
@@ -25,7 +25,6 @@ ExecStartPre=/usr/bin/xset s noblank
 ExecStart=/usr/bin/python /home/pi/screenly/viewer.py
 Restart=on-failure
 
-ExecStartPost=/bin/rm -f /tmp/uzbl_*
 ExecStartPost=/bin/rm -f /tmp/screenly_html/*
 
 [Install]

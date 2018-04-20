@@ -739,7 +739,7 @@ else:
 def viewIndex():
     player_name = settings['player_name']
     my_ip = get_node_ip()
-    resin_uuid = getenv("RESIN_UUID", None)
+
 
     ws_addresses = []
 
@@ -748,8 +748,7 @@ def viewIndex():
     else:
         ws_addresses.append('ws://' + my_ip + ':' + settings['websocket_port'])
 
-    if resin_uuid:
-        ws_addresses.append('wss://{}.resindevice.io/ws/'.format(resin_uuid))
+
 
     return template('index.html', ws_addresses=ws_addresses, player_name=player_name)
 
@@ -844,20 +843,6 @@ def splash_page():
     return template('splash_page.html', ip_lookup=ip_lookup, msg=msg)
 
 
-@app.route('/hotspot')
-def hotspot_page():
-    if LISTEN == '127.0.0.1':
-        sh.sudo('nginx', '-s', 'stop')
-
-    ssid = "ScreenlyOSE-{}".format(pwgen(4, symbols=False))
-    ssid_password = pwgen(8, symbols=False)
-
-    wifi_connect = sh.sudo('wifi-connect', '-s', ssid, '-p', ssid_password, _bg=True, _err_to_out=True)
-
-    while 'Starting HTTP server' not in wifi_connect.process.stdout:
-        sleep(1)
-
-    return template('hotspot.html', network=ssid, ssid_pswd=ssid_password, address='screenly.io/wifi')
 
 
 @app.errorhandler(403)
