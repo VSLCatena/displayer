@@ -1,6 +1,6 @@
 - name: Install Screenly
   hosts: all
-  user: pi
+  user: root
   become: yes
 
   handlers:
@@ -30,7 +30,6 @@
   roles:
     - system
     - network
-    - rpi-update
     - screenly
     - splashscreen
     - nginx
