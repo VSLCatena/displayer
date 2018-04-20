@@ -7,7 +7,6 @@
   with_items:
     - .screenly
     - .config
-    - .config/uzbl
 
 - name: Copy Screenly default config
   copy:
@@ -30,12 +29,6 @@
     src: gtkrc-2.0
     dest: /home/pi/.gtkrc-2.0
 
-- name: Copy in UZBL config
-  copy:
-    owner: pi
-    group: pi
-    src: uzbl-config
-    dest: /home/pi/.config/uzbl/config-screenly
 
 - name: Install pip dependencies
   pip: requirements=/home/pi/screenly/requirements.txt
