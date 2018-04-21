@@ -35,8 +35,9 @@ sudo apt-get install -y python-dev git-core libffi-dev libssl-dev
 curl -s https://bootstrap.pypa.io/get-pip.py | sudo python
 sudo pip install ansible==2.1.0.0
 
-
-cd ../ansible
+BRANCH="dev"
+ansible localhost -m git -a "repo=${1:-https://github.com/VSLCatena/screenly-ose.git} dest=/opt/screenly version=$BRANCH"
+cd /opt/screenly/ansible
 
 ansible-playbook site.yml $EXTRA_ARGS
 
