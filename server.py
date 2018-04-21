@@ -742,7 +742,6 @@ def viewIndex():
 
 
     ws_addresses = []
-
     if settings['use_ssl']:
         ws_addresses.append('wss://' + my_ip + '/ws/')
     else:
@@ -751,7 +750,6 @@ def viewIndex():
 
 
     return template('index.html', ws_addresses=ws_addresses, player_name=player_name)
-
 
 @app.route('/settings', methods=["GET", "POST"])
 @auth_basic
@@ -848,7 +846,6 @@ def splash_page():
 @app.errorhandler(403)
 def mistake403(code):
     return 'The parameter you passed has the wrong format!'
-
 
 @app.errorhandler(404)
 def mistake404(code):

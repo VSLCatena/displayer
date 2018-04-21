@@ -303,10 +303,10 @@ def view_video(uri, duration):
     except sh.ErrorReturnCode_1:
         logging.info('Resource URI is not correct, remote host is not responding or request was rejected.')
 
-#https://stackoverflow.com/questions/10807398/php-fetch-pages-content-with-remote-call
-#https://stackoverflow.com/questions/353803/redirect-to-specified-url-on-php-script-completion
-#https://stackoverflow.com/questions/7467330/php-headerlocation-force-url-change-in-address-bar
-#https://stackoverflow.com/questions/35187115/read-bash-output-with-javascript
+# https://stackoverflow.com/questions/10807398/php-fetch-pages-content-with-remote-call
+# https://stackoverflow.com/questions/353803/redirect-to-specified-url-on-php-script-completion
+# https://stackoverflow.com/questions/7467330/php-headerlocation-force-url-change-in-address-bar
+# https://stackoverflow.com/questions/35187115/read-bash-output-with-javascript
 def check_update():
     """
     Check if there is a later version of Screenly OSE
@@ -315,6 +315,7 @@ def check_update():
     False if no update needed and None if unable to check.
     """
 
+    
     sha_file = path.join(settings.get_configdir(), 'latest_screenly_sha')
     device_id_file = path.join(settings.get_configdir(), 'device_id')
 
