@@ -1,44 +1,44 @@
 - name: Ensure folders exist
   file:
-    path: "/home/pi/{{ item }}"
+    path: "/opt/{{ item }}"
     state: directory
-    owner: pi
-    group: pi
+    owner: root
+    group: root
   with_items:
     - .screenly
     - .config
 
 - name: Copy Screenly default config
   copy:
-    owner: pi
-    group: pi
+    owner: root
+    group: root
     src: screenly.conf
-    dest: /home/pi/.screenly/screenly.conf
+    dest: /etc/screenly/screenly.conf
     force: no
 
 - name: Remove deprecated parameter "listen"
   lineinfile:
     regexp: '^.*listen.*'
     state: absent
-    dest: /home/pi/.screenly/screenly.conf
+    dest: /etc/screenly/screenly.conf
 
 
 
 
 - name: Install pip dependencies
-  pip: requirements=/home/pi/screenly/requirements.txt
+  pip: requirements=/opt/screenly/requirements.txt
 
 - name: Create default assets database if does not exists
   copy:
-    owner: pi
-    group: pi
+    owner: root
+    group: root
     src: screenly.db
-    dest: /home/pi/.screenly/screenly.db
+    dest: /opt/.screenly/screenly.db
     force: no
 
 - name: Run database migration
   become: no
-  command: python /home/pi/screenly/bin/migrate.py
+  command: python /opt/screenly/bin/migrate.py
   register: migrate
 
 - debug: msg="{{ migrate.stdout }}"
@@ -56,7 +56,7 @@
     minute: 0
     hour: 1
     job: "/usr/local/bin/screenly_utils.sh cleanup"
-    user: pi
+    user: root
 
 - name: Copy screenly_overrides
   copy:

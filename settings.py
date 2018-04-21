@@ -13,6 +13,7 @@ import zmq
 
 CONFIG_DIR = '.screenly/'
 CONFIG_FILE = 'screenly.conf'
+CONFIG_DIR_ETC = '/etc/screenly/'
 DEFAULTS = {
     'main': {
         'database': CONFIG_DIR + 'screenly.db',
@@ -63,7 +64,7 @@ class ScreenlySettings(IterableUserDict):
 
     def __init__(self, *args, **kwargs):
         IterableUserDict.__init__(self, *args, **kwargs)
-        self.home = getenv('HOME')
+        self.home = '/opt/'
         self.conf_file = self.get_configfile()
 
         if not path.isfile(self.conf_file):
@@ -117,7 +118,7 @@ class ScreenlySettings(IterableUserDict):
         return path.join(self.home, CONFIG_DIR)
 
     def get_configfile(self):
-        return path.join(self.home, CONFIG_DIR, CONFIG_FILE)
+        return path.join(CONFIG_DIR_ETC, CONFIG_FILE)
 
     def check_user(self, user, password):
         if not self['user'] or not self['password']:
