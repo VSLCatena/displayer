@@ -31,6 +31,5 @@
     - system
     - network
     - screenly
-    - splashscreen
     - nginx
     - ssl
