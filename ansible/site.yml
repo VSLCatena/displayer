@@ -4,9 +4,9 @@
   become: yes
 
   handlers:
-    - name: restart-nginx
+    - name: restart-apache2
       service:
-        name: nginx
+        name: apache2
         state: restarted
 
     - name: reload systemctl
@@ -31,5 +31,5 @@
     - system
     - network
     - screenly
-    - nginx
     - ssl
+    - apache2

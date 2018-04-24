@@ -1,26 +1,26 @@
 ---
-# Enable Nginx
+# Enable Apache2
 - name: Check screenly.conf
   command: cat /etc/screenly/screenly.conf
   register: config
 
 - set_fact: no_ssl="{{config.stdout.find('use_ssl = True') == -1}}"
 
-- name: Installs Nginx
+- name: Installs Apache2
   apt:
-    name: nginx-light
+    name: 
     state: present
     update_cache: yes
 
 - name: Cleans up default config
   file:
-    path: /etc/nginx/sites-enabled/default
+    path: /etc/apache2/sites-enabled/default
     state: absent
 
-- name: Installs nginx config
+- name: Installs apache2 config
   copy:
-    src: nginx.conf
-    dest:  /etc/nginx/sites-enabled/screenly.conf
+    src: apache2.conf
+    dest:  /etc/apache2/sites-enabled/screenly.conf
     mode: 644
     owner: root
     group: root
@@ -33,29 +33,29 @@
     dest: /etc/systemd/system/screenly-web.service
   when: no_ssl
 
-# Disable Nginx
-- name: Remove Nginx
+# Disable Apache2
+- name: Remove Apache2
   apt:
-    name: nginx-light
+    name: apache2
     state: absent
     update_cache: yes
   tags:
-    - disable-nginx
+    - disable-apache2
 
-- name: Remove nginx config
+- name: Remove apache2 config
   file:
-    path:  /etc/nginx/sites-enabled/screenly.conf
+    path:  /etc/apache2/sites-enabled/screenly.conf
     state: absent
   tags:
-    - disable-nginx
+    - disable-apache2
 
 - name: Turns off the ssl mode
   replace:
     replace: 'use_ssl = False'
     regexp: '^.*use_ssl.*'
-    dest: /home/pi/.screenly/screenly.conf
+    dest: /opt/.screenly/screenly.conf
   tags:
-    - disable-nginx
+    - disable-apache2
 
 - name: Modifies screenly-web service to listen on default gateway
   lineinfile:
@@ -68,4 +68,4 @@
     - restart-screenly-websocket_server_layer
     - restart-screenly-server
   tags:
-    - disable-nginx
+    - disable-apache2
