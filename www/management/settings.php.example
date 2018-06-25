@@ -1,0 +1,36 @@
+<?php
+#error
+#error_reporting(E_ALL);
+#ini_set('display_errors',1);
+
+#upload
+ini_set('post_max_size', '1M'); //or bigger by multiple files
+ini_set('upload_max_filesize', '1M');
+ini_set('max_file_uploads', 1);
+$max_size = 1*1000*1000;
+$target_dir = '../../assets/';
+$noExecMode = 0600;
+$max_len=32;
+
+#Database
+define('DB_DRIVER', 'mysql');
+define('DB_HOST', 'localhost');
+define('DB_USERNAME', 'user');
+define('DB_PASSWORD', 'password');
+define('DB_DATABASE', 'mydatabase');
+
+#whitelist
+$whitelist['ext'] = array('jpg','png');
+$whitelist['type'] = array('image/jpg','image/jpeg','image/png'	);
+$whitelist['byteheader'] = array(
+'FFD8FF', #JP(E)G
+'89504E' #PNG
+);
+
+
+
+
+
+
+		
+?>
